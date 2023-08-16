@@ -37,6 +37,12 @@ def getRoutes(request):
             'body': None,
             'description': 'Returns an array of products'
         },
+        {
+            'Endpoint': '/Products/id',
+            'method': 'GET',
+            'body': None,
+            'description': 'Returns a single product with the specified productId'
+        },
 
     ]
 
@@ -88,3 +94,9 @@ def GetProducts(request):
     products = ProductDetails.objects.all()
     serializers = ProductDetailSerializer(products,many=True)
     return Response(serializers.data)
+
+@api_view(['GET'])
+def GetProduct(request,key):
+    products=ProductDetails.objects.get(product_id=key)
+    serializer= ProductDetailSerializer(products,many=False)
+    return Response(serializer.data)

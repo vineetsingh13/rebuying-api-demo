@@ -9,5 +9,6 @@ urlpatterns=[
     path('users/<str:key>/', views.GetUser),
     path('AuthenticateUser/',views.AuthenticateUser),
     path('CreateUser/',views.CreateUser),
-    path('Products/',views.GetProducts)
+    path('Products/',views.GetProducts),
+    path('Products/<str:key>/',views.GetProduct)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
