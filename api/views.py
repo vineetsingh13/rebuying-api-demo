@@ -38,7 +38,7 @@ def getRoutes(request):
             'description': 'Returns an array of products'
         },
         {
-            'Endpoint': '/Products/id',
+            'Endpoint': '/Products/id/',
             'method': 'GET',
             'body': None,
             'description': 'Returns a single product with the specified productId'
@@ -96,7 +96,14 @@ def GetProducts(request):
     return Response(serializers.data)
 
 @api_view(['GET'])
-def GetProduct(request,key):
-    products=ProductDetails.objects.get(product_id=key)
-    serializer= ProductDetailSerializer(products,many=False)
+def GetProduct(request):
+    product_id = request.GET.get('product_id')
+    
+    # Handle URL-encoded characters (%3D)
+    product_id = product_id.replace('%3D', '=')
+    
+    
+    products = ProductDetails.objects.get(product_id=product_id)
+    serializer = ProductDetailSerializer(products, many=False)
     return Response(serializer.data)
+    
