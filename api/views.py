@@ -14,7 +14,7 @@ def getRoutes(request):
             'description': 'Returns an array of users'
         },
         {
-            'Endpoint': '/users/id',
+            'Endpoint': '/users/id/',
             'method': 'GET',
             'body': None,
             'description': 'Returns a single user'
@@ -57,8 +57,11 @@ def GetUsers(request):
 
 
 @api_view(['GET'])
-def GetUser(request,key):
-    users=AccountCreationDetails.objects.get(UserId=key)
+def GetUser(request):
+
+    user_id=request.GET.get('UserId')
+    user_id=user_id.replace('%3D','=')
+    users=AccountCreationDetails.objects.get(UserId=user_id)
     serializer= AccountSerializer(users,many=False)
     return Response(serializer.data)
 
@@ -101,7 +104,6 @@ def GetProduct(request):
     
     # Handle URL-encoded characters (%3D)
     product_id = product_id.replace('%3D', '=')
-    
     
     products = ProductDetails.objects.get(product_id=product_id)
     serializer = ProductDetailSerializer(products, many=False)
