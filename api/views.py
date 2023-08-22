@@ -43,6 +43,12 @@ def getRoutes(request):
             'body': None,
             'description': 'Returns a single product with the specified productId'
         },
+        {
+            'Endpoint': '/Products/UserId/',
+            'method': 'GET',
+            'body': None,
+            'description': 'Returns all the product in the list excluding the Users product'
+        },
 
     ]
 
@@ -109,3 +115,12 @@ def GetProduct(request):
     serializer = ProductDetailSerializer(products, many=False)
     return Response(serializer.data)
     
+
+@api_view(['GET'])
+def GetProductsExcludingUser(request):
+    user_id=request.GET.get('UserId')
+    user_id=user_id.replace('%3D','=')
+
+    products = ProductDetails.objects.exclude(UserId=user_id)
+    serializers = ProductDetailSerializer(products,many=True)
+    return Response(serializers.data)

@@ -10,5 +10,6 @@ urlpatterns=[
     path('AuthenticateUser/',views.AuthenticateUser),
     path('CreateUser/',views.CreateUser),
     path('Products/',views.GetProducts),
-    path('Products/id/',views.GetProduct)
+    path('Products/id/',views.GetProduct),
+    path('Products/UserId/',views.GetProductsExcludingUser)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
