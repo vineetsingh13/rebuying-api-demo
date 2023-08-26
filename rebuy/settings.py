@@ -57,14 +57,6 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    'https://web-production-dae5.up.railway.app'
-    
-]
-
-CSRF_TRUSTED_ORIGINS = [
-    'https://web-production-dae5.up.railway.app'
-]
 
 ROOT_URLCONF = 'rebuy.urls'
 
