@@ -9,11 +9,11 @@ class AccountCreationDetails(models.Model):
     EmailID = models.EmailField(
         max_length=200, unique=True, null=False, blank=False)
     Address = models.CharField(max_length=300, null=False, blank=False)
-    GST = models.CharField(max_length=20,blank=True)
+    GST = models.CharField(max_length=50,blank=True)
     AuthorisedSignatoryName = models.CharField(max_length=100)
     ContactNumber = models.CharField(max_length=10)
     BusinessType = models.CharField(max_length=100)
-    Password=models.CharField(max_length=13,null=False)
+    Password=models.CharField(max_length=50,null=False)
 
 
     class Meta:
