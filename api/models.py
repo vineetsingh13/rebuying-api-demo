@@ -13,7 +13,7 @@ class AccountCreationDetails(models.Model):
     AuthorisedSignatoryName = models.CharField(max_length=100)
     ContactNumber = models.CharField(max_length=10)
     BusinessType = models.CharField(max_length=100)
-    Password=models.CharField(max_length=50,null=False)
+    Password=models.CharField(max_length=100,null=False)
 
 
     class Meta:
